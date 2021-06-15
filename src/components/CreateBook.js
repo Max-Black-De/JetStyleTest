@@ -26,18 +26,28 @@ class CreateBook extends React.Component {
     //     }
     // }
 
-    // addBookCover = (even) => {
-    //         var reader = new FileReader();
-    //         var name = even.target.files[0].name;
-    //         reader.addEventListener("load", function () {
-    //             if (this.result && localStorage) {
-    //                 window.localStorage.setItem(name, this.result);
-    //             } else {
-    //                 alert();
-    //             }
-    //         });
-    //         reader.readAsDataURL(even.target.files[0]);
-    // }
+
+    addBookCover = (even) => {
+        var reader = new FileReader();
+        var name = even.target.files[0].name;
+        reader.addEventListener("load", function () {
+            if (this.result && localStorage) {
+                localStorage.setItem(name, this.result);
+            } else {
+                alert();
+            }
+        });
+        reader.readAsDataURL(even.target.files[0]);
+    }
+
+    showImages =() => {
+        for (let i = 0; i < localStorage.length; i++) {
+            let res = localStorage.getItem(localStorage.key(i));
+            var image = new Image();
+            image.src = res;
+    }
+    }
+
 
         render() {
         
@@ -76,7 +86,9 @@ class CreateBook extends React.Component {
                     </div>
     
                     <div className="button">
-                        <button type="submit" >Сохранить</button>
+                        <button
+                        type="submit"
+                        onClick={this.showImages}>Сохранить</button>
                     </div>
             </form>
         );
