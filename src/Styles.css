@@ -1,0 +1,96 @@
+html {
+  background-image: url(./components/images/bg/bg_black_glasses.jpg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin-top: 50px;
+  text-align: center;
+  min-height: 100vh;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.input {
+  margin-top: 50px
+}
+
+.library-container {
+  margin-top: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.inputAuthor, .inputNameOfBook, .inputImg {
+  text-align: center;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: 3cm ;
+    display: inline-block;
+    /* appearance: auto; */
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+/* .main-container {
+  width: 220px;
+  height: 254px
+} */
+.image {
+  width: 150px;
+  height: 250px;
+}
+
+li {
+  list-style: none;
+}
+
+.library-wrapper {
+  align-items: center;
+  display: column;
+  justify-content: center;
+}
+
+.wrapper {
+  margin-top: 30px;
+  border: 1px solid #fff;
+  display: grid;
+  align-items: end;
+  width: 220px;
+  height: 330px;
+}
+
+.editor {
+  display: inline-grid
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center
+}
+
+.btnDelete, .btnEdit {
+  width: 110px;
+  height: 25px;
+}
