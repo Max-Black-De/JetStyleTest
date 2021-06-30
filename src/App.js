@@ -9,30 +9,54 @@ import Book from './components/Book';
 class App extends React.Component {
 
   state = {
-    library: {}
+    library: {
+    },
+    keys: {
+    }
   };
 
   componentDidMount() {
     const library = 'Library';
     const localStorageRef = localStorage.getItem(library);
     if (localStorageRef) {
-      this.setState({ library: JSON.parse(localStorageRef)})
+      this.setState({ library: JSON.parse(localStorageRef) })
+    }
+
+    const image = 'image';
+    const localStorageImg = localStorage.getItem(image);
+    if (localStorageImg) {
+      this.setState({ image: JSON.parse(localStorageImg) })
     }
   }
 
-  componentDidUpdate() {
-      localStorage.setItem('Library', JSON.stringify(this.state.library));
-      console.log('ready to fly again')
-}
+  // getKey = () => {
+  //   Object.keys(this.state.library).map (key => {
+  //     const keys = { ...this.state.keys };
+  //     keys['key'] = key;
+  //     this.setState ({keys});
+  //   })
+  // }
 
-  addBook = (book) => {
+  componentDidUpdate() {
+    localStorage.setItem('Library', JSON.stringify(this.state.library));
+    // localStorage.setItem('image', JSON.stringify(this.state.library));
+  }
+
+  // showImages = (key, name) => {
+  //   var image = localStorage.getItem(name);
+  //   const library = { ...this.state.library };
+  //   library['image'] = image;
+  //   this.setState ({library});
+  // }
+
+  addBook = book => {
     const library = { ...this.state.library };
     library[`book${Date.now()}`] = book;
-    this.setState({ library }) 
+    this.setState({ library });
   }
 
   loadLibrary = () => {
-    this.setState({ library: stateLibrary }) 
+    this.setState({ library: stateLibrary })
   }
 
   updateLibrary = (key, updatedBook) => {
@@ -47,17 +71,19 @@ class App extends React.Component {
     this.setState({ library });
   }
 
-  saveCover = (image) => {
-    const library = { ...this.state.library };
-    library[image] = image;
-    this.setState({ library });
-  }
-
   render() {
     return (
       <div className="App">
         <header className="header-menu">
-          <AdminMenu addBook={this.addBook} saveCover={this.saveCover} loadLibrary={this.loadLibrary} />
+          <AdminMenu
+          key={this.state.keys.key}
+          index={this.state.keys.key}
+          setKeys={this.setKeys}
+          showImages={this.showImages}
+          addBook={this.addBook}
+          loadLibrary={this.loadLibrary} />
+          
+          
         </header>
         <div className="library-container">
           <ul className="main-container">
@@ -70,6 +96,7 @@ class App extends React.Component {
                       index={key}
                       details={this.state.library[key]} />
                   </div>
+                  <div className='testImg'> {this.state.image} </div>
                   <div className="editor-container">
                     <Editor
                       key={key}
@@ -77,6 +104,9 @@ class App extends React.Component {
                       book={this.state.library[key]}
                       updateLibrary={this.updateLibrary}
                       deleteBook={this.deleteBook} />
+                  </div>
+                  <div>
+                    <button onClick={this.getKey}>add keys</button>
                   </div>
                 </div>
               )

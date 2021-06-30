@@ -5,54 +5,42 @@ class CreateBook extends React.Component {
     
     newElementAuthor = React.createRef();
     newElementNameOfBook = React.createRef();
-    // newElementStatusOfBook = React.createRef();
     newElementImageOfBook = React.createRef();
 
-    createCard = event => {
+    createCard = (event) => {
         event.preventDefault();
-        const book ={
+        const book =  {
             author: this.newElementAuthor.current.value,
             book: this.newElementNameOfBook.current.value,
-            status: "visible",
-            image: this.newElementImageOfBook.current.value
+            image: this.newElementImageOfBook.files[0].name
         };
+        debugger
         this.props.addBook(book);
         event.currentTarget.reset();
     }
 
     // addBookCover = (e) => {
-    //     if (e.target.files.length) {
-    //         this.props.saveCover(e.target.files[0]);
-    //     }
+    //     console.log('Work')
+    //     var reader = new FileReader();
+    //     var name = e.target.files[0].name;
+    //     reader.onload = () => {
+    //         if (reader.result && localStorage) {
+    //             localStorage.setItem(name, reader.result);
+    //         } else {
+    //             alert();
+    //         }
+    //     };
+    //     reader.readAsDataURL(e.target.files[0]);
+    //     // this.props.showImages(name)
     // }
-
-
-    addBookCover = (even) => {
-        var reader = new FileReader();
-        var name = even.target.files[0].name;
-        reader.addEventListener("load", function () {
-            if (this.result && localStorage) {
-                localStorage.setItem(name, this.result);
-            } else {
-                alert();
-            }
-        });
-        reader.readAsDataURL(even.target.files[0]);
-    }
-
-    showImages =() => {
-        for (let i = 0; i < localStorage.length; i++) {
-            let res = localStorage.getItem(localStorage.key(i));
-            var image = new Image();
-            image.src = res;
-    }
-    }
 
 
         render() {
         
         return (
-            <form className="input" onSubmit={this.createCard}>
+            <form className="input"
+            onSubmit={this.createCard}
+            >
                     
                     <div className="author">
                         <input
@@ -78,17 +66,19 @@ class CreateBook extends React.Component {
                         <input 
                         name="image"
                         type="file"
-                        autoComplete="off"
-                        onChange={this.addBookCover}
+                        onChange={this.createCard}
                         className="inputImg"
                         placeholder="Обложка"
-                        ref={this.newElementImageOfBook}></input>
+                        ref={this.newElementImageOfBook}
+                        ></input>
                     </div>
     
                     <div className="button">
                         <button
-                        type="submit"
-                        onClick={this.showImages}>Сохранить</button>
+                        // onClick={this.createCard}
+                        type="submit">Сохранить</button>
+                        {/* <button
+                        >Сохранить iMG</button> */}
                     </div>
             </form>
         );

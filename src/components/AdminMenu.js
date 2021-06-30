@@ -12,7 +12,14 @@ class AdminMenu extends React.Component {
                         Список литературы на лето 5 "П" класс.
                     </h1>
                 </header>
-                <CreateBook saveCover={this.props.saveCover} addBook={this.props.addBook}/>
+                <CreateBook
+                key={this.props.keys}
+                index={this.props.keys}
+                setKeys={this.props.setKeys}
+                showImages={this.props.showImages}
+                addBook={this.props.addBook}
+                />
+                
                 <button onClick={this.props.loadLibrary}>Загрузить готовую библиотеку</button>
             </div>
         );
